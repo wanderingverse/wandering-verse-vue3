@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Login from '../components/system/login/Login.vue'
 
 const routes = [

@@ -10,6 +10,12 @@ const handleLoginSubmit = () => {
     alert('请输入用户名或密码')
     return
   }
+  axios.post('/api/system/login', {
+    username: username.value,
+    password: password.value
+  }).then(response => {
+    alert('登录成功')
+  })
 }
 </script>
 
