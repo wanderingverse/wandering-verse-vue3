@@ -34,3 +34,5 @@ const handleLoginSubmit = () => {
   </div>
 </template>
 
+<style scoped></style>
+

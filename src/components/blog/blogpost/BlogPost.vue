@@ -49,3 +49,5 @@ const addBlogPost = () => {
     </form>
   </div>
 </template>
+
+<style scoped></style>
