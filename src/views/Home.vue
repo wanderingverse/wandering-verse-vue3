@@ -23,7 +23,8 @@ const getBlogPostList = async () => {
 const router = useRouter()
 
 const goToPost = (id) => {
-    router.push({name: "BlogPost", params: {id}})
+    const url = router.resolve({name: "BlogPost", params: {id}})
+    window.open(url.href, '_blank')
 }
 
 onMounted(() => {

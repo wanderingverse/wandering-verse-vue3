@@ -9,10 +9,10 @@ const scrollElement = document.documentElement;
 </script>
 
 <template>
-  <div style="display: flex;width: 100%;height: 100vh;">
-    <MdCatalog style="flex: 1;" :editorId="id" :scrollElement="scrollElement"/>
-    <MdPreview style="flex: 3;" :id="id" :modelValue="text"/>
-  </div>
+    <div style="display: flex;width: 100%;height: 100vh;">
+        <MdCatalog style="flex: 1;" :editorId="id" :scrollElement="scrollElement"/>
+        <MdPreview style="flex: 3;" :id="id" :modelValue="text"/>
+    </div>
 </template>
 
 <style scoped>
