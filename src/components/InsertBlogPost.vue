@@ -1,8 +1,8 @@
 <!--新增个人博客-->
 <script setup>
-
-
 import {ref} from "vue";
+import {MdEditor} from "md-editor-v3";
+import "md-editor-v3/lib/style.css"
 import {insertBlogPost} from "@/api/BlogPost.js";
 import {HTTP_STATUS} from "@/config/HttpConfig.js";
 
@@ -31,7 +31,7 @@ const onSubmit = async () => {
             <el-input v-model="form.summary" type="textarea"/>
         </el-form-item>
         <el-form-item label="正文">
-            <el-input v-model="form.content" type="textarea"/>
+            <MdEditor v-model="form.content"/>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="onSubmit">提交</el-button>
