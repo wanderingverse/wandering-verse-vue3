@@ -22,3 +22,12 @@ export function insertBlogPost(params) {
         url: "/blog/post/add", method: "post", data: params
     })
 }
+
+/**
+ * 获取博客详情
+ */
+export function fetchBlogPostDetail(params) {
+    return request({
+        url: "/blog/post/detail", method: "get", params
+    })
+}

@@ -3,6 +3,7 @@ import Login from "@/views/Login.vue";
 import BlogPost from "@/views/BlogPost.vue";
 import Home from "@/views/Home.vue";
 import InsertBlogPost from "@/components/InsertBlogPost.vue";
+import Demo from "@/components/Demo.vue";
 
 const routes = [
     {
@@ -24,7 +25,12 @@ const routes = [
         path: '/dev',
         name: 'dev',
         component: InsertBlogPost
-    }
+    },
+    {
+        path: '/demo',
+        name: 'demo',
+        component: Demo
+    },
 ]
 
 const router = createRouter({

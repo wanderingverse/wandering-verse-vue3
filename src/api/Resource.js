@@ -12,3 +12,16 @@ export async function fetchRandomImage(params) {
         return ""
     }
 }
+
+/**
+ * 上传图片文件
+ */
+export function uploadImage(file) {
+    const form = new FormData();
+    form.append("file", file);
+    return request({
+        url: "/upload-resource/image",
+        method: "post",
+        data: form
+    })
+}

@@ -1,7 +1,7 @@
 <script setup>
 import {onMounted, ref} from 'vue'
 import {fetchBlogPostList} from "@/api/BlogPost.js";
-import {fetchRandomImage} from "@/api/RandomResource.js";
+import {fetchRandomImage} from "@/api/Resource.js";
 import {useRouter} from "vue-router";
 
 const blogPostList = ref([])
