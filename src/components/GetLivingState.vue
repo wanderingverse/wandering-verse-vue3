@@ -33,12 +33,12 @@ const handleChange = (value) => {
 }
 // 点击删除按钮后回调，删除指定的条目
 const handleDelete = async (data) => {
-    // todo 删除 value=id
     const title = "删除 " + data.label;
     const content = "确定要" + title + " 吗？";
     const result = await dialogStore.openDialog(title, content);
     if (result) {
         console.log("执行删除")
+        // todo 删除 value=id
     }
     // 更新列表
     await getLivingStateList()

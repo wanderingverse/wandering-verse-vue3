@@ -25,15 +25,38 @@ const form = ref({
     content: ""
 })
 
+
+/**
+ * 重置表单数据
+ */
+const resetForm = () => {
+    form.value = {
+        title: "",
+        summary: "",
+        content: ""
+    }
+}
+
 const onSubmit = async () => {
     // 提交内容
     const res = await insertBlogPost(form.value)
     if (res.code === HTTP_STATUS.OK) {
-        // 输出：提交成功
-        console.log("提交成功：", form)
+        resetForm();
+        // 弹消息提醒
+        ElMessage.success({
+            message: '发布成功',
+            plain: true,
+        });
     }
 }
 
+
+/**
+ * 上传 markdown 中插入的图片
+ * @param file 图片
+ * @param callback 文件名
+ * @returns {Promise<void>}
+ */
 const onUploadImage = async (file, callback) => {
     const urlList = [];
     for (let i = 0; i < file.length; i++) {

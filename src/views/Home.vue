@@ -3,12 +3,20 @@ import {onMounted, ref} from 'vue'
 import {fetchBlogPostList} from "@/api/BlogPost.js";
 import {fetchRandomImage} from "@/api/Resource.js";
 import {useRouter} from "vue-router";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime"
+import {NSkeleton, NImage, NCard, NH3, NP, NF, NFlex} from "naive-ui";
+
 
 const blogPostList = ref([])
 const getBlogPostList = async () => {
+    dayjs.extend(relativeTime);
+    dayjs.locale('zh-cn');
     const res = await fetchBlogPostList();
     blogPostList.value = res.data.records.map(post => ({
         ...post,
+        createTime: dayjs(post.createTime).format("YYYY-MM-DD HH:mm:ss"),
+        relativeTime: dayjs(post.createTime).fromNow(),
         image: "",
         loading: true
     }))
@@ -22,6 +30,11 @@ const getBlogPostList = async () => {
 }
 const router = useRouter()
 
+
+/**
+ * 跳转到内容详情
+ * @param id
+ */
 const goToPost = (id) => {
     const url = router.resolve({name: "BlogPost", params: {id}})
     window.open(url.href, '_blank')
@@ -33,26 +46,28 @@ onMounted(() => {
 </script>
 
 <template>
-    <el-space :fill=true :fill-ratio="0" :size="'large'" :wrap=true direction="horizontal">
-        <el-skeleton v-for="(post,index) in blogPostList" :key="index" :loading="post.loading" animated>
-            <template #template>
-                <div style="width: 260px">
-                    <el-skeleton-item style="width: 260px; height: 160px" variant="image"/>
-                    <el-skeleton-item style="margin-top: 12px; font-size: 16px" variant="text"/>
-                    <el-skeleton-item style="margin-top: 7px; font-size: 12px;width: 61.8%" variant="text"/>
-                </div>
-            </template>
-            <template #default>
-                <div style="width: 260px;cursor: pointer" @click="goToPost(post.id)">
-                    <img :src="post.image"
-                         alt=""
-                         style="width: 260px; height: 160px;"/>
-                    <el-link style="margin-top: 12px; font-size: 16px" type="default">{{ post.title }}</el-link>
-                    <p style="margin-top: 7px; font-size: 12px;width: 61.8%">2025/05/24 12:21:32</p>
-                </div>
-            </template>
-        </el-skeleton>
-    </el-space>
+    <n-flex justify="space-around" wrap>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <!--        <n-card hoverable v-for="(blog,index) in blogPostList" :key="index" style="max-width: 25%">-->
+        <!--            <template #header>-->
+        <!--                <n-skeleton v-if="blog.loading"/>-->
+        <!--                <n-image v-else :src="blog.image" width="100%"/>-->
+        <!--            </template>-->
+        <!--            <template #default>-->
+        <!--                <n-skeleton v-if="blog.loading"/>-->
+        <!--                <n-h3 v-else>{{ blog.title }}</n-h3>-->
+        <!--            </template>-->
+        <!--            <template #footer>-->
+        <!--                <n-skeleton v-if="blog.loading"/>-->
+        <!--                <n-p v-else>{{ blog.createTime }}</n-p>-->
+        <!--                <n-skeleton v-if="blog.loading"/>-->
+        <!--                <n-p v-else>{{ blog.relativeTime }}</n-p>-->
+        <!--            </template>-->
+        <!--        </n-card>-->
+    </n-flex>
 </template>
 
 <style scoped>
