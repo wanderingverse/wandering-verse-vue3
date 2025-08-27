@@ -5,8 +5,7 @@ import {fetchRandomImage} from "@/api/Resource.js";
 import {useRouter} from "vue-router";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime"
-import {NSkeleton, NImage, NCard, NH3, NP, NF, NFlex} from "naive-ui";
-
+import {NSkeleton, NImage, NCard, NH3, NP, NFlex} from "naive-ui";
 
 const blogPostList = ref([])
 const getBlogPostList = async () => {
@@ -46,27 +45,23 @@ onMounted(() => {
 </script>
 
 <template>
-    <n-flex justify="space-around" wrap>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <!--        <n-card hoverable v-for="(blog,index) in blogPostList" :key="index" style="max-width: 25%">-->
-        <!--            <template #header>-->
-        <!--                <n-skeleton v-if="blog.loading"/>-->
-        <!--                <n-image v-else :src="blog.image" width="100%"/>-->
-        <!--            </template>-->
-        <!--            <template #default>-->
-        <!--                <n-skeleton v-if="blog.loading"/>-->
-        <!--                <n-h3 v-else>{{ blog.title }}</n-h3>-->
-        <!--            </template>-->
-        <!--            <template #footer>-->
-        <!--                <n-skeleton v-if="blog.loading"/>-->
-        <!--                <n-p v-else>{{ blog.createTime }}</n-p>-->
-        <!--                <n-skeleton v-if="blog.loading"/>-->
-        <!--                <n-p v-else>{{ blog.relativeTime }}</n-p>-->
-        <!--            </template>-->
-        <!--        </n-card>-->
+    <n-flex>
+        <n-card hoverable v-for="(blog,index) in blogPostList" :key="index" style="max-width: 25%">
+            <template #header>
+                <n-skeleton v-if="blog.loading"/>
+                <n-image v-else :src="blog.image" width="100%"/>
+            </template>
+            <template #default>
+                <n-skeleton v-if="blog.loading"/>
+                <n-h3 v-else>{{ blog.title }}</n-h3>
+            </template>
+            <template #footer>
+                <n-skeleton v-if="blog.loading"/>
+                <n-p v-else>{{ blog.createTime }}</n-p>
+                <n-skeleton v-if="blog.loading"/>
+                <n-p v-else>{{ blog.relativeTime }}</n-p>
+            </template>
+        </n-card>
     </n-flex>
 </template>
 
