@@ -6,7 +6,9 @@ import "md-editor-v3/lib/style.css"
 import {insertBlogPost} from "@/api/BlogPost.js";
 import {HTTP_STATUS} from "@/config/HttpConfig.js";
 import {uploadImage} from "@/api/Resource.js";
+import {createDiscreteApi, NButton, NForm, NFormItem, NInput} from "naive-ui";
 
+const discreteApi = createDiscreteApi(['message'])
 const toolbars = [
     'image',
     'table',
@@ -42,11 +44,7 @@ const onSubmit = async () => {
     const res = await insertBlogPost(form.value)
     if (res.code === HTTP_STATUS.OK) {
         resetForm();
-        // 弹消息提醒
-        ElMessage.success({
-            message: '发布成功',
-            plain: true,
-        });
+        discreteApi.message.success('发布成功')
     }
 }
 
@@ -68,20 +66,20 @@ const onUploadImage = async (file, callback) => {
 </script>
 
 <template>
-    <el-form :model="form" label-width="auto">
-        <el-form-item label="文章标题">
-            <el-input v-model="form.title" autofocus clearable placeholder="请输入文章标题"/>
-        </el-form-item>
-        <el-form-item label="摘要">
-            <el-input v-model="form.summary" placeholder="AI 生成" type="textarea"/>
-        </el-form-item>
-        <el-form-item label="正文">
+    <n-form :model="form" label-width="auto">
+        <n-form-item>
+            <n-input v-model:value="form.title" autofocus clearable placeholder="请输入文章标题"/>
+        </n-form-item>
+        <n-form-item>
+            <n-input v-model:value="form.summary" placeholder="AI 生成" type="textarea"/>
+        </n-form-item>
+        <n-form-item>
             <MdEditor v-model="form.content" :toolbars="toolbars" @onUploadImg="onUploadImage"/>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="onSubmit">提交</el-button>
-        </el-form-item>
-    </el-form>
+        </n-form-item>
+        <n-form-item>
+            <n-button type="primary" @click="onSubmit">提交</n-button>
+        </n-form-item>
+    </n-form>
 </template>
 
 <style scoped>

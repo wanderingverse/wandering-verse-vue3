@@ -5,7 +5,7 @@ import {fetchRandomImage} from "@/api/Resource.js";
 import {useRouter} from "vue-router";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime"
-import {NSkeleton, NImage, NCard, NH3, NP, NFlex} from "naive-ui";
+import {NCard, NFlex, NH3, NImage, NP, NSkeleton} from "naive-ui";
 
 const blogPostList = ref([])
 const getBlogPostList = async () => {
@@ -46,10 +46,11 @@ onMounted(() => {
 
 <template>
     <n-flex justify="center">
-        <n-card hoverable v-for="(blog,index) in blogPostList" :key="index" style="max-width: 24%">
+        <n-card v-for="(blog,index) in blogPostList" :key="index" hoverable style="max-width: 24%;cursor: pointer"
+                @click="()=>goToPost(blog.id)">
             <template #header>
                 <n-skeleton v-if="blog.loading"/>
-                <n-image v-else :src="blog.image"/>
+                <n-image v-else :src="blog.image" preview-disabled/>
             </template>
             <template #default>
                 <n-skeleton v-if="blog.loading"/>
