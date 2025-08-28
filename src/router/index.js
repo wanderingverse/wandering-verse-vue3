@@ -4,6 +4,7 @@ import BlogPost from "@/views/BlogPost.vue";
 import Home from "@/views/Home.vue";
 import InsertBlogPost from "@/components/InsertBlogPost.vue";
 import Demo from "@/components/Demo.vue";
+import InsertLivingState from "@/components/InsertLivingState.vue";
 
 const routes = [
     {
@@ -24,7 +25,7 @@ const routes = [
     {
         path: '/dev',
         name: 'dev',
-        component: InsertBlogPost
+        component: InsertLivingState
     },
     {
         path: '/demo',

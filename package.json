@@ -8,6 +8,7 @@
         "build": "vite build"
     },
     "dependencies": {
+        "@vicons/antd": "^0.13.0",
         "axios": "^1.9.0",
         "dayjs": "^1.11.14",
         "md-editor-v3": "^5.8.4",
