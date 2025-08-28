@@ -45,11 +45,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <n-flex>
-        <n-card hoverable v-for="(blog,index) in blogPostList" :key="index" style="max-width: 25%">
+    <n-flex justify="center">
+        <n-card hoverable v-for="(blog,index) in blogPostList" :key="index" style="max-width: 24%">
             <template #header>
                 <n-skeleton v-if="blog.loading"/>
-                <n-image v-else :src="blog.image" width="100%"/>
+                <n-image v-else :src="blog.image"/>
             </template>
             <template #default>
                 <n-skeleton v-if="blog.loading"/>
