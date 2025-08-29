@@ -3,7 +3,7 @@ import Login from "@/views/Login.vue";
 import BlogPost from "@/views/BlogPost.vue";
 import Home from "@/views/Home.vue";
 import InsertBlogPost from "@/components/InsertBlogPost.vue";
-import Demo from "@/components/Demo.vue";
+import Splash from "@/components/Splash.vue";
 
 const routes = [
     {
@@ -29,7 +29,7 @@ const routes = [
     {
         path: '/demo',
         name: 'demo',
-        component: Demo
+        component: Splash
     },
 ]
 
