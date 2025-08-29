@@ -1,5 +1,4 @@
 <script setup>
-import ResultPage from "@/components/ResultPage.vue";
 import {NDialogProvider, NLoadingBarProvider} from "naive-ui";
 </script>
 
@@ -9,7 +8,6 @@ import {NDialogProvider, NLoadingBarProvider} from "naive-ui";
             <router-view></router-view>
         </n-loading-bar-provider>
     </n-dialog-provider>
-    <ResultPage/>
 </template>
 
 <style scoped></style>

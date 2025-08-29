@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
-import Login from "@/views/Login.vue";
-import BlogPost from "@/views/BlogPost.vue";
+import Login from "@/components/Login.vue";
+import BlogPostDetail from "@/components/BlogPostDetail.vue";
 import Home from "@/views/Home.vue";
 import InsertBlogPost from "@/components/InsertBlogPost.vue";
 import Splash from "@/components/Splash.vue";
@@ -18,8 +18,8 @@ const routes = [
     },
     {
         path: '/blog-post/:id',
-        name: 'BlogPost',
-        component: BlogPost
+        name: 'BlogPostDetail',
+        component: BlogPostDetail
     },
     {
         path: '/dev',

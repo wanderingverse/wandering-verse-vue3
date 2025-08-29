@@ -1,6 +1,5 @@
 import axios from "axios"
 import {createDiscreteApi} from "naive-ui";
-import {useResultPageStore} from "@/stores/resultPage.js";
 
 const discreteApi = createDiscreteApi(['message', 'loadingBar'])
 const service = axios.create({
@@ -9,7 +8,6 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(config => {
-    useResultPageStore().hide()
     discreteApi.loadingBar.start()
     return config
 })
@@ -24,8 +22,7 @@ service.interceptors.response.use(
         } else {
             discreteApi.loadingBar.error();
             if (res.code === 404) {
-                // 展示 404 页面
-                useResultPageStore().show()
+                // todo 展示 404
                 return res.code;
             } else {
                 discreteApi.message.warning(res.msg)
@@ -35,7 +32,7 @@ service.interceptors.response.use(
     },
     error => {
         if (error.response != null && error.response.status === 404) {
-            useResultPageStore().show()
+            // todo 显示 404
         } else {
         }
         return Promise.reject(error)

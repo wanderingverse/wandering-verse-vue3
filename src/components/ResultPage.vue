@@ -1,15 +1,18 @@
 <script setup>
-import {NResult, NFlex} from "naive-ui";
-import {useResultPageStore} from "@/stores/resultPage.js";
+import {NFlex, NResult} from "naive-ui";
 import {GOLDEN_RATIO} from "@/config/CommonConfig.js";
+import {reactive} from "vue";
 
-
-const resultPageStore = useResultPageStore();
+const resultValue = reactive({
+    visible: true,
+    description: "页面不存在"
+})
 </script>
 
 <template>
-    <n-flex justify="center" align="center" :style="`height: ${GOLDEN_RATIO}vh`">
-        <n-result v-if="resultPageStore.visible" status="404" title="404 资源不存在" :description="resultPageStore.description"/>
+    <n-flex :style="`height: ${GOLDEN_RATIO}vh`" align="center" justify="center">
+        <n-result v-if="resultValue.visible" :description="resultValue.description" status="404"
+                  title="404 资源不存在"/>
     </n-flex>
 </template>
 
