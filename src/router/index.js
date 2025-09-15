@@ -2,8 +2,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import Login from "@/components/Login.vue";
 import BlogPostDetail from "@/components/BlogPostDetail.vue";
 import Home from "@/views/Home.vue";
-import InsertBlogPost from "@/components/InsertBlogPost.vue";
 import InsertLivingState from "@/components/InsertLivingState.vue";
+import InsertBlogPost from "@/components/InsertBlogPost.vue";
 
 const routes = [
     {

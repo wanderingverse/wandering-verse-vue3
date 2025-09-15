@@ -1,11 +1,13 @@
 <script setup>
-import {NDialogProvider, NLoadingBarProvider} from "naive-ui";
+import {NDialogProvider, NLoadingBarProvider, NScrollbar} from "naive-ui";
 </script>
 
 <template>
     <n-dialog-provider>
         <n-loading-bar-provider>
-            <router-view></router-view>
+            <n-scrollbar trigger="hover">
+                <router-view></router-view>
+            </n-scrollbar>
         </n-loading-bar-provider>
     </n-dialog-provider>
 </template>
