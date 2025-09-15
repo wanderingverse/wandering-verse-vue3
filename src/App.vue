@@ -10,4 +10,6 @@ import {NDialogProvider, NLoadingBarProvider} from "naive-ui";
     </n-dialog-provider>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
