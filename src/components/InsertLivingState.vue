@@ -4,7 +4,7 @@
 import GetLivingState from "@/components/GetLivingState.vue";
 import {onMounted, ref} from "vue";
 import {addLivingState, fetchLivingStateList} from "@/api/LivingState.js";
-import {useLivingStateStore} from "@/stores/livingState.js";
+import {useLivingStateStore} from "@/stores/LivingState.js";
 import {HTTP_STATUS} from "@/config/HttpConfig.js";
 import emitter from "@/events/Emitter.js";
 import {NSelect} from "naive-ui";

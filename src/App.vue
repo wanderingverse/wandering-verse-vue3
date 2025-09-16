@@ -1,12 +1,15 @@
 <script setup>
 import {NDialogProvider, NLoadingBarProvider, NScrollbar} from "naive-ui";
+import ResultPage from "@/components/ResultPage.vue";
 </script>
 
 <template>
     <n-dialog-provider>
         <n-loading-bar-provider>
             <n-scrollbar trigger="hover">
-                <router-view></router-view>
+                <ResultPage>
+                    <router-view></router-view>
+                </ResultPage>
             </n-scrollbar>
         </n-loading-bar-provider>
     </n-dialog-provider>

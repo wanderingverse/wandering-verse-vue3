@@ -1,15 +1,22 @@
 import axios from "axios"
 import {createDiscreteApi} from "naive-ui";
+import {HTTP_STATUS} from "@/config/HttpConfig.js";
+import {useResultPageStore} from "@/stores/ResultPage.js";
 
-const discreteApi = createDiscreteApi(['message', 'loadingBar'])
+const discreteApi = createDiscreteApi(['message', 'loadingBar']);
 const service = axios.create({
     baseURL: "/api", timeout: 10000
-})
+});
 
 // 请求拦截器
 service.interceptors.request.use(config => {
-    discreteApi.loadingBar.start()
-    return config
+    discreteApi.loadingBar.start();
+    const resultPageStore = useResultPageStore();
+    if (resultPageStore.visible === true) {
+        // 拦截请求
+        return Promise.reject(new Error());
+    }
+    return config;
 })
 
 // 响应拦截器
@@ -17,23 +24,27 @@ service.interceptors.response.use(
     response => {
         const res = response.data;
         if (res.code === 200) {
+            const resultPageStore = useResultPageStore();
             discreteApi.loadingBar.finish();
+            // 隐藏结果页
+            resultPageStore.hide();
             return res;
         } else {
             discreteApi.loadingBar.error();
-            if (res.code === 404) {
-                // todo 展示 404
-                return res.code;
-            } else {
-                discreteApi.message.warning(res.msg)
-                return res.code;
-            }
+            discreteApi.message.warning(res.msg);
+            return res.code;
         }
     },
     error => {
-        if (error.response != null && error.response.status === 404) {
-            // todo 显示 404
-        } else {
+        const resultPageStore = useResultPageStore();
+        discreteApi.loadingBar.error();
+        if (error.response.status === HTTP_STATUS.NOT_FOUND) {
+            resultPageStore.show("资源不存在", "生活总归带点荒谬", HTTP_STATUS.NOT_FOUND)
+        } else if (error.response.status === HTTP_STATUS.INTERNAL_SERVER_ERROR) {
+            if (resultPageStore.visible === false) {
+                discreteApi.message.error("连不到服务器惹");
+                resultPageStore.show("连不到服务器惹", "生活总归带点荒谬", HTTP_STATUS.INTERNAL_SERVER_ERROR);
+            }
         }
         return Promise.reject(error)
     }

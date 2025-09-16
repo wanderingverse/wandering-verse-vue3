@@ -3,7 +3,7 @@
 import {h, onMounted, ref} from 'vue'
 import {NButton, NCascader, useDialog} from "naive-ui";
 import {fetchLivingStateList} from "@/api/LivingState.js";
-import {useLivingStateStore} from "@/stores/livingState.js";
+import {useLivingStateStore} from "@/stores/LivingState.js";
 import {useEventListener} from "@/events/EventListener.js";
 import {DeleteOutlined} from "@vicons/antd"
 

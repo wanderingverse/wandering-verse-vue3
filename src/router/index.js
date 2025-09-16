@@ -1,9 +1,9 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Login from "@/components/Login.vue";
 import BlogPostDetail from "@/components/BlogPostDetail.vue";
-import Home from "@/views/Home.vue";
-import InsertLivingState from "@/components/InsertLivingState.vue";
 import InsertBlogPost from "@/components/InsertBlogPost.vue";
+import ResultPage from "@/components/ResultPage.vue";
+import Home from "@/views/Home.vue";
 
 const routes = [
     {
@@ -29,8 +29,8 @@ const routes = [
     {
         path: '/demo',
         name: 'demo',
-        component: InsertLivingState
-    },
+        component: ResultPage
+    }
 ]
 
 const router = createRouter({
