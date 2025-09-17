@@ -10,12 +10,12 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(config => {
-    discreteApi.loadingBar.start();
     const resultPageStore = useResultPageStore();
     if (resultPageStore.visible === true) {
         // 拦截请求
         return Promise.reject(new Error());
     }
+    discreteApi.loadingBar.start();
     return config;
 })
 

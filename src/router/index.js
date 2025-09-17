@@ -2,8 +2,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import Login from "@/components/Login.vue";
 import BlogPostDetail from "@/components/BlogPostDetail.vue";
 import InsertBlogPost from "@/components/InsertBlogPost.vue";
-import ResultPage from "@/components/ResultPage.vue";
 import Home from "@/views/Home.vue";
+import Demo from "@/components/Demo.vue";
 
 const routes = [
     {
@@ -29,7 +29,7 @@ const routes = [
     {
         path: '/demo',
         name: 'demo',
-        component: ResultPage
+        component: Demo
     }
 ]
 
