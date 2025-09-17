@@ -36,16 +36,21 @@ service.interceptors.response.use(
         }
     },
     error => {
+        console.log(error)
         const resultPageStore = useResultPageStore();
-        discreteApi.loadingBar.error();
-        if (error.response.status === HTTP_STATUS.NOT_FOUND) {
-            resultPageStore.show("资源不存在", "生活总归带点荒谬", HTTP_STATUS.NOT_FOUND)
-        } else if (error.response.status === HTTP_STATUS.INTERNAL_SERVER_ERROR) {
-            if (resultPageStore.visible === false) {
-                discreteApi.message.error("连不到服务器惹");
-                resultPageStore.show("连不到服务器惹", "生活总归带点荒谬", HTTP_STATUS.INTERNAL_SERVER_ERROR);
+        if (!error.response) {
+            resultPageStore.show("服务器连接超时", "生活总归带点荒谬", HTTP_STATUS.INTERNAL_SERVER_ERROR);
+        } else {
+            if (error.response.status === HTTP_STATUS.NOT_FOUND) {
+                resultPageStore.show("资源不存在", "生活总归带点荒谬", HTTP_STATUS.NOT_FOUND)
+            } else if (error.response.status === HTTP_STATUS.INTERNAL_SERVER_ERROR) {
+                if (resultPageStore.visible === false) {
+                    discreteApi.message.error("连不到服务器");
+                    resultPageStore.show("连不到服务器", "生活总归带点荒谬", HTTP_STATUS.INTERNAL_SERVER_ERROR);
+                }
             }
         }
+        discreteApi.loadingBar.error();
         return Promise.reject(error)
     }
 )
