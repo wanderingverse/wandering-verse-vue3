@@ -25,3 +25,10 @@ export function uploadImage(file) {
         data: form
     })
 }
+
+/**
+ * 获取随机一段文字
+ */
+export function fetchRandomText(params) {
+    return request({url: "/random/text", method: "get", params})
+}
