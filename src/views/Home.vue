@@ -30,7 +30,7 @@ onMounted(() => {
 <template>
     <div class="carousel-wrapper">
         <carousel/>
-        <n-space class="carousel-text" size="small" vertical>
+        <n-space v-if="carouselDescriptionText" class="carousel-text" size="small" vertical>
             <p id="carousel-text-title">{{ SITE_NAME }}</p>
             <p id="carousel-text-description">{{ carouselDescriptionText }}</p>
         </n-space>
