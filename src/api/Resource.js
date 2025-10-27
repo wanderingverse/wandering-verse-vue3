@@ -6,7 +6,7 @@ import request from "@/utils/request.js";
  */
 export async function fetchRandomImage(params) {
     try {
-        const res = await request({url: "/random/image", method: "get", params})
+        const res = await request({url: "/download-resource/random/image", method: "get", params})
         return `data:image/jpeg;base64,${res.data.body}`
     } catch (error) {
         return ""
@@ -30,5 +30,5 @@ export function uploadImage(file) {
  * 获取随机一段文字
  */
 export function fetchRandomText(params) {
-    return request({url: "/random/text", method: "get", params})
+    return request({url: "/download-resource/random/text", method: "get", params})
 }
